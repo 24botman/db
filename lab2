@@ -1,0 +1,51 @@
+CREATE TABLE student2 (
+ rollno NUMBER(5) PRIMARY KEY,
+ name VARCHAR2(30),
+ department VARCHAR2(20),
+ mark NUMBER(3)
+);
+
+
+INSERT INTO std2 VALUES(1,'ravi','bca',89);
+INSERT INTO std2 VALUES(2,'das','bca',78);
+INSERT INTO std2 VALUES(3,'kin','bca',92);
+INSERT INTO std2 VALUES(4,'ani','mca',85);
+INSERT INTO std2 VALUES(5,'nivi','mca',90);
+
+
+-------------------AND,OR,NOT--------------------
+
+select name ,mark from std2 where mark >80 AND department='bca';
+
+select * from std2 where department='bca' OR mark=92;
+
+select * from std2 where NOT department='mca';
+
+--------------IN------------------------------
+select name,department from std2 where department IN ('mca');
+
+-------------------BETWEEN---------------------------
+select name,mark from std2 where mark BETWEEN 80 AND 90;
+
+
+-- Display table
+SELECT * FROM student2;
+
+-- Distinct
+SELECT DISTINCT department FROM std2;
+
+-- LIKE
+SELECT * FROM std2 WHERE name LIKE '%vi%';
+
+-- BETWEEN
+SELECT * FROM std2 WHERE mark BETWEEN 85 AND 95;
+
+
+select * from std2 where department='mcs';
+
+select * from std2 where department !='mca';
+
+select name,mark > 80 from std2;
+
+select name,department from std2 where mark < 80;
+
