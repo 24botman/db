@@ -1,0 +1,29 @@
+CREATE TABLE std1(
+ rollno NUMBER(5) PRIMARY KEY,
+ name VARCHAR2(25),
+ dept VARCHAR2(25),
+ marks NUMBER(5)
+);
+
+INSERT INTO std1 VALUES(101,'ajay','cs',87);
+INSERT INTO std1 VALUES(102,'benji','cs',84);
+INSERT INTO std1 VALUES(103,'chayan','cs',79);
+INSERT INTO std1 VALUES(104,'dharan','cs',80);
+INSERT INTO std1 VALUES(105,'eniya','physics',83);
+
+desc std1;
+
+-- Rename table
+
+ALTER TABLE std1 RENAME TO std;
+
+- Rename column
+
+ALTER TABLE std RENAME COLUMN marks TO percentage;
+
+
+- Truncate 
+TRUNCATE TABLE std;  
+or 
+
+TRUNCATE delete std;
