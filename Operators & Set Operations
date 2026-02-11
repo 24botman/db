@@ -1,0 +1,57 @@
+-- Create student table
+
+CREATE TABLE student( stud_id INT PRIMARY KEY,stud_name VARCHAR2(50),course VARCHAR2(30),marks INT);
+
+-- Insert values
+INSERT INTO student VALUES(1,'Arun','bca',85);
+INSERT INTO student VALUES(2,'Bala','bsc',55);
+INSERT INTO student VALUES(3,'Vasu','bca',72);
+INSERT INTO student VALUES(4,'Dinesh','bsc',40);
+INSERT INTO student VALUES(5,'Vicky','bca',90);
+
+-- Department table
+CREATE TABLE department(dept_id INT PRIMARY KEY,course VARCHAR2(30));
+
+
+INSERT INTO department VALUES(10,'bca');
+INSERT INTO department VALUES(11,'bsc');
+INSERT INTO department VALUES(12,'b.com');
+
+//---------------- AND
+SELECT stud_name,course,marks FROM student WHERE course='bca' AND marks>80;
+
+------------------------ OR
+SELECT stud_name,course,marks FROM student WHERE course='bsc' OR marks<50;
+
+---------------------- NOT
+SELECT stud_name,course,marks FROM student WHERE NOT course='bca';
+
+------------------------------ UNION
+SELECT course FROM student UNION SELECT course FROM department;
+
+=============================-- INTERSECT
+SELECT course FROM student INTERSECT SELECT course FROM department;
+
+------------------------------------ MINUS
+SELECT course FROM department MINUS SELECT course FROM student;
+
+
+----------------------------------------- ORDER BY
+SELECT stud_name,marks FROM student ORDER BY marks ASC;
+SELECT stud_name,marks FROM student ORDER BY marks DESC;
+
+
+--------------------------------------- GROUP BY
+SELECT course, COUNT(*) AS total_students, AVG(marks) AS avg_marks FROM student
+GROUP BY course;
+
+
+-------------------------------------------- HAVING
+SELECT course, AVG(marks) AS avg_marks FROM student GROUP BY course HAVING AVG(marks) > 60;
+
+
+----------------------------------------------- EXISTS
+SELECT stud_name,course FROM student s WHERE EXISTS (
+ SELECT 1 FROM department d
+ WHERE s.course = d.course
+);
