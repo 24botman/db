@@ -1,0 +1,74 @@
+-- Create Students table
+CREATE TABLE students(
+  student_id INT PRIMARY KEY,
+  name VARCHAR2(50),
+  course_id INT
+);
+
+-- Create Course table
+CREATE TABLE course(
+  course_id INT PRIMARY KEY,
+  course_name VARCHAR2(50)
+);
+
+-- Insert Students
+INSERT ALL
+INTO students VALUES(1,'Arjun',101)
+INTO students VALUES(2,'Meena',102)
+INTO students VALUES(3,'Ravi',103)
+INTO students VALUES(4,'Kiran',NULL)
+SELECT * FROM dual;
+
+-- Insert Courses
+INSERT ALL
+INTO course VALUES(101,'DBMS')
+INTO course VALUES(102,'JAVA')
+INTO course VALUES(104,'PYTHON')
+INTO course VALUES(105,'AI')
+SELECT * FROM dual;
+
+---------------------------------------------------
+-- INNER JOIN
+---------------------------------------------------
+SELECT s.student_id, s.name, c.course_name
+FROM students s
+INNER JOIN course c
+ON s.course_id = c.course_id;
+
+---------------------------------------------------
+-- LEFT JOIN
+---------------------------------------------------
+SELECT s.student_id, s.name, c.course_name
+FROM students s
+LEFT JOIN course c
+ON s.course_id = c.course_id;
+
+---------------------------------------------------
+-- RIGHT JOIN
+---------------------------------------------------
+SELECT s.student_id, s.name, c.course_name
+FROM students s
+RIGHT JOIN course c
+ON s.course_id = c.course_id;
+
+---------------------------------------------------
+-- FULL OUTER JOIN
+---------------------------------------------------
+SELECT s.student_id, s.name, c.course_name
+FROM students s
+FULL OUTER JOIN course c
+ON s.course_id = c.course_id;
+
+---------------------------------------------------
+-- SELF JOIN
+-- Example: Find pairs of students enrolled in the same course
+---------------------------------------------------
+SELECT s1.student_id AS student1_id,
+       s1.name AS student1_name,
+       s2.student_id AS student2_id,
+       s2.name AS student2_name,
+       s1.course_id
+FROM students s1
+JOIN students s2
+ON s1.course_id = s2.course_id
+AND s1.student_id < s2.student_id;
