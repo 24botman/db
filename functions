@@ -1,0 +1,56 @@
+– Functions
+-- Create table
+CREATE TABLE employeefun(
+ emp_id NUMBER,
+ emp_name VARCHAR2(20),
+ dept VARCHAR2(15),
+ salary NUMBER,
+ join_date DATE
+);
+-- Insert values
+INSERT INTO employeefun VALUES(1,'Rose','HR',3000, DATE '2022-01-15');
+INSERT INTO employeefun VALUES(2,'Anu','IT',5000, DATE '2021-06-20');
+INSERT INTO employeefun VALUES(3,'Kevin','IT',4500, DATE '2020-03-10');
+INSERT INTO employeefun VALUES(4,'Divya','SALES',2800, DATE '2025-02-05');
+-- String functions
+SELECT emp_name,
+UPPER(emp_name) AS upper_name,
+LOWER(emp_name) AS lower_name,
+LENGTH(emp_name) AS name_length
+FROM employeefun;
+-- Substring
+SELECT emp_name,
+SUBSTR(emp_name,1,3) AS start_name
+FROM employeefun;
+-- Date functions
+SELECT emp_name,join_date,
+MONTHS_BETWEEN(SYSDATE,join_date) AS experience_months
+FROM employeefun;
+-- Add months
+SELECT emp_name,join_date,
+ADD_MONTHS(join_date,3) AS probation_end
+FROM employeefun;
+
+-- Aggregate functions
+
+SELECT COUNT(*) AS total_employees,
+SUM(salary) AS total_salary,
+AVG(salary) AS average_salary,
+MAX(salary) AS highest_salary,
+MIN(salary) AS lowest_salary
+FROM employeefun;
+-- Group by
+SELECT dept,
+COUNT(*) AS emp_count,
+AVG(salary) AS avg_salary
+FROM employeefun
+GROUP BY dept;
+-- Mathematical functions
+SELECT salary,
+ROUND(salary/3) AS round_value,
+CEIL(salary/3) AS ceil_value,
+FLOOR(salary/3) AS floor_value
+FROM employeefun;
+-- MOD
+SELECT emp_id, MOD(emp_id,2) AS remainder
+FROM employeefun;
