@@ -11,4 +11,4 @@ RETURN total;
 END;
 /
 Function created.
-SQL> select pay_bill(20000) from dual;
+SQL> SELECT pay_bill(20000) FROM dual;
